@@ -1,9 +1,22 @@
-import express from 'express';
-import { registerUser, loginUser } from '../controllers/authController.js';
+const router = require("express").Router();
+const {
+  register,
+  login,
+  sendOtp,
+  verifyOtp
+} = require("../controllers/authController");
 
-const router = express.Router();
 
-router.post('/signup', registerUser);
-router.post('/login', loginUser);
+router.post("/register", register);
+router.post("/login", login);
+router.post(
+  "/send-otp",
+  sendOtp
+);
 
-export default router;
+router.post(
+  "/verify-otp",
+  verifyOtp
+);
+
+module.exports = router;

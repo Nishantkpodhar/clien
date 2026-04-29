@@ -1,10 +1,29 @@
-import express from 'express';
-import { getSellerDashboard } from '../controllers/sellerController.js';
-import { authMiddleware } from '../middleware/authMiddleware.js';
-import { sellerMiddleware } from '../middleware/sellerMiddleware.js';
+const router =
+  require("express").Router();
 
-const router = express.Router();
+const protect =
+  require("../middleware/authMiddleware");
+const sellerOnly =
+  require("../middleware/sellerMiddleware");
 
-router.get('/dashboard', authMiddleware, sellerMiddleware, getSellerDashboard);
+const {
+  createSeller,
+  dashboard
+} = require(
+  "../controllers/sellerController"
+);
 
-export default router;
+router.post(
+  "/register",
+  protect,
+  createSeller
+);
+
+router.get(
+  "/dashboard",
+  protect,
+  sellerOnly,
+  dashboard
+);
+
+module.exports = router;

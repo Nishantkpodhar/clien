@@ -1,4 +1,8 @@
-export const logger = {
-  info: (message) => console.log(message),
-  error: (message) => console.error(message),
+const logger = (...args) => {
+  console.log(
+    `[${new Date().toISOString()}]`,
+    ...args
+  );
 };
+
+module.exports = logger;

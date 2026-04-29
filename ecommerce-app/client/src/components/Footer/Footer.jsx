@@ -2,8 +2,8 @@ import './Footer.css';
 
 const Footer = () => {
   return (
-    <footer className="footer">
-      <p>© 2026 Ecommerce App. All rights reserved.</p>
+    <footer className="bg-black text-white text-center py-6 mt-10">
+      © 2026 ShopVerse
     </footer>
   );
 };

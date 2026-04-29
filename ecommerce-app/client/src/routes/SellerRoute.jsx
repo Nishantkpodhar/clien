@@ -1,9 +1,13 @@
-import { Navigate } from 'react-router-dom';
-import useAuth from '../hooks/useAuth';
+import { Navigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
-const SellerRoute = ({ children }) => {
-  const { user, token } = useAuth();
-  return token && user?.role === 'seller' ? children : <Navigate to="/" replace />;
-};
+function SellerRoute({ children }) {
+  const { user } = useAuth();
+
+  if (user?.role !== "seller")
+    return <Navigate to="/" />;
+
+  return children;
+}
 
 export default SellerRoute;

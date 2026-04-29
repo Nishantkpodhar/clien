@@ -1,0 +1,107 @@
+[
+  {
+    "name": "Apple",
+    "collections": [
+      "iPhone",
+      "MacBook",
+      "iPad",
+      "Apple Watch",
+      "AirPods",
+      "HomePod",
+      "Magic Keyboard",
+      "Apple TV",
+      "Studio Display",
+      "Accessories"
+    ]
+  },
+  {
+    "name": "Samsung",
+    "collections": [
+      "Galaxy S",
+      "Galaxy A",
+      "Galaxy Fold",
+      "Galaxy Tab",
+      "Galaxy Watch",
+      "Galaxy Buds",
+      "Smart TV",
+      "Monitors",
+      "Home Appliances",
+      "Accessories"
+    ]
+  },
+  {
+    "name": "Sony",
+    "collections": [
+      "Headphones",
+      "Earbuds",
+      "Bravia TV",
+      "PlayStation",
+      "Cameras",
+      "Speakers",
+      "Soundbar",
+      "Gaming Gear",
+      "Monitors",
+      "Accessories"
+    ]
+  },
+  {
+    "name": "Nike",
+    "collections": [
+      "Running Shoes",
+      "Sneakers",
+      "Football",
+      "Basketball",
+      "Training",
+      "T-Shirts",
+      "Hoodies",
+      "Shorts",
+      "Accessories",
+      "Kids Wear"
+    ]
+  },
+  {
+    "name": "Adidas",
+    "collections": [
+      "Originals",
+      "Running",
+      "Football",
+      "Basketball",
+      "Training",
+      "Jackets",
+      "T-Shirts",
+      "Shorts",
+      "Accessories",
+      "Kids Wear"
+    ]
+  },
+  {
+    "name": "Puma",
+    "collections": [
+      "Sneakers",
+      "Running",
+      "Training",
+      "Football",
+      "Cricket",
+      "Jackets",
+      "T-Shirts",
+      "Track Pants",
+      "Accessories",
+      "Kids Wear"
+    ]
+  },
+  {
+    "name": "Levis",
+    "collections": [
+      "Jeans",
+      "Shirts",
+      "T-Shirts",
+      "Jackets",
+      "Shorts",
+      "Cargo",
+      "Belts",
+      "Accessories",
+      "Casual Wear",
+      "Premium Wear"
+    ]
+  }
+]

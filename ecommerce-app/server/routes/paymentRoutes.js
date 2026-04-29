@@ -1,9 +1,9 @@
-import express from 'express';
-import { createPaymentIntent } from '../controllers/paymentController.js';
-import { authMiddleware } from '../middleware/authMiddleware.js';
+const router = require("express").Router();
+const auth = require("../middleware/authMiddleware");
+const {
+  createPayment,
+} = require("../controllers/paymentController");
 
-const router = express.Router();
+router.post("/", auth, createPayment);
 
-router.post('/create-intent', authMiddleware, createPaymentIntent);
-
-export default router;
+module.exports = router;

@@ -1,9 +1,13 @@
-import { Navigate } from 'react-router-dom';
-import useAuth from '../hooks/useAuth';
+import { Navigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
-const AdminRoute = ({ children }) => {
-  const { user, token } = useAuth();
-  return token && user?.role === 'admin' ? children : <Navigate to="/" replace />;
-};
+function AdminRoute({ children }) {
+  const { user } = useAuth();
+
+  if (user?.role !== "admin")
+    return <Navigate to="/" />;
+
+  return children;
+}
 
 export default AdminRoute;

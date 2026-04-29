@@ -1,10 +1,30 @@
-import express from 'express';
-import { getAdminDashboard } from '../controllers/adminController.js';
-import { authMiddleware } from '../middleware/authMiddleware.js';
-import { adminMiddleware } from '../middleware/adminMiddleware.js';
+const router =
+  require("express").Router();
 
-const router = express.Router();
+const protect =
+  require("../middleware/authMiddleware");
+const adminOnly =
+  require("../middleware/adminMiddleware");
 
-router.get('/dashboard', authMiddleware, adminMiddleware, getAdminDashboard);
+const {
+  dashboard,
+  getAllOrders
+} = require(
+  "../controllers/adminController"
+);
 
-export default router;
+router.get(
+  "/dashboard",
+  protect,
+  adminOnly,
+  dashboard
+);
+
+router.get(
+  "/orders",
+  protect,
+  adminOnly,
+  getAllOrders
+);
+
+module.exports = router;

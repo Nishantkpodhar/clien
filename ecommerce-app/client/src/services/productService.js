@@ -1,4 +1,13 @@
-import api from './axios';
+import products from "../assets/data/products.json";
 
-export const fetchProducts = () => api.get('/products');
-export const fetchProductById = (id) => api.get(`/products/${id}`);
+export const getProducts = () => {
+  return products;
+};
+
+export const getFeaturedProducts = () => {
+  return products.filter((item) => item.featured);
+};
+
+export const getProductBySlug = (slug) => {
+  return products.find((item) => item.slug === slug);
+};

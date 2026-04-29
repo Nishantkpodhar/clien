@@ -1,14 +1,32 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
+import reviews from "../assets/data/reviews.json";
 
 const reviewSlice = createSlice({
-  name: 'reviews',
-  initialState: { items: [] },
+  name: "reviews",
+  initialState: {
+    list: reviews,
+  },
+
   reducers: {
-    setReviews: (state, action) => {
-      state.items = action.payload;
+    approveReview: (state, action) => {
+      const review = state.list.find(
+        (r) => r.id === action.payload
+      );
+
+      if (review) review.approved = true;
+    },
+
+    removeReview: (state, action) => {
+      state.list = state.list.filter(
+        (r) => r.id !== action.payload
+      );
     },
   },
 });
 
-export const { setReviews } = reviewSlice.actions;
+export const {
+  approveReview,
+  removeReview,
+} = reviewSlice.actions;
+
 export default reviewSlice.reducer;

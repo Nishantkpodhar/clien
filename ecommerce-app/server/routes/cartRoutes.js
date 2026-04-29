@@ -1,9 +1,23 @@
-import express from 'express';
-import { getCart } from '../controllers/cartController.js';
-import { authMiddleware } from '../middleware/authMiddleware.js';
+const router =
+  require("express").Router();
 
-const router = express.Router();
+const protect =
+  require("../middleware/authMiddleware");
 
-router.get('/', authMiddleware, getCart);
+const {
+  getCart,
+  addToCart,
+  removeCartItem
+} = require(
+  "../controllers/cartController"
+);
 
-export default router;
+router.get("/", protect, getCart);
+router.post("/", protect, addToCart);
+router.delete(
+  "/:id",
+  protect,
+  removeCartItem
+);
+
+module.exports = router;

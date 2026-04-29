@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "productId": 1,
+    "name": "Rahul",
+    "rating": 5,
+    "comment": "Amazing product quality"
+  },
+  {
+    "id": 2,
+    "productId": 1,
+    "name": "Priya",
+    "rating": 4,
+    "comment": "Worth buying"
+  }
+]

@@ -1,9 +1,31 @@
-import express from 'express';
-import { getProducts, getProductById } from '../controllers/productController.js';
+const router = require("express").Router();
+const auth = require("../middleware/authMiddleware");
 
-const router = express.Router();
+const {
+  getProducts,
+  getProduct,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+   uploadImage,
+} = require("../controllers/productController");
+const upload =
+  require(
+    "../middleware/uploadMiddleware"
+  );
 
-router.get('/', getProducts);
-router.get('/:id', getProductById);
+router.post(
+  "/upload",
+  auth,
+  upload.single("image"),
+  uploadImage
+);
 
-export default router;
+router.get("/", getProducts);
+router.get("/:id", getProduct);
+
+router.post("/", auth, createProduct);
+router.put("/:id", auth, updateProduct);
+router.delete("/:id", auth, deleteProduct);
+
+module.exports = router;

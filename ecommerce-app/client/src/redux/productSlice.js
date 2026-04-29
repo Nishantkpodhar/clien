@@ -1,14 +1,28 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
+import products from "../assets/data/products.json";
+
+const initialState = {
+  products,
+  filteredProducts: products,
+};
 
 const productSlice = createSlice({
-  name: 'products',
-  initialState: { items: [], status: 'idle' },
+  name: "products",
+  initialState,
   reducers: {
-    setProducts: (state, action) => {
-      state.items = action.payload;
+    filterByCategory: (state, action) => {
+      state.filteredProducts = state.products.filter(
+        (item) => item.category === action.payload
+      );
+    },
+
+    resetProducts: (state) => {
+      state.filteredProducts = state.products;
     },
   },
 });
 
-export const { setProducts } = productSlice.actions;
+export const { filterByCategory, resetProducts } =
+  productSlice.actions;
+
 export default productSlice.reducer;

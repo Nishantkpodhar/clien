@@ -1,4 +1,23 @@
-import mongoose from 'mongoose';
-const brandSchema = new mongoose.Schema({ name: String }, { timestamps: true });
-const Brand = mongoose.model('Brand', brandSchema);
-export default Brand;
+const mongoose = require("mongoose");
+
+const schema =
+  new mongoose.Schema(
+    {
+      name: {
+        type: String,
+        required: true,
+        unique: true
+      },
+
+      logo: String
+    },
+    {
+      timestamps: true
+    }
+  );
+
+module.exports =
+  mongoose.model(
+    "Brand",
+    schema
+  );

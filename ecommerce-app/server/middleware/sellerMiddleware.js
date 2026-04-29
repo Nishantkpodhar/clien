@@ -1,6 +1,18 @@
-export const sellerMiddleware = (req, res, next) => {
-  if (req.user?.role !== 'seller') {
-    return res.status(403).json({ message: 'Seller access required' });
+const sellerOnly = (
+  req,
+  res,
+  next
+) => {
+  if (
+    req.user?.role === "seller" ||
+    req.user?.role === "admin"
+  ) {
+    return next();
   }
-  next();
+
+  return res.status(403).json({
+    message: "Seller only"
+  });
 };
+
+module.exports = sellerOnly;

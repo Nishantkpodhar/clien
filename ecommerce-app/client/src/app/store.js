@@ -1,22 +1,30 @@
-import { configureStore } from '@reduxjs/toolkit';
-import authReducer from '../redux/authSlice';
-import productReducer from '../redux/productSlice';
-import cartReducer from '../redux/cartSlice';
-import orderReducer from '../redux/orderSlice';
-import reviewReducer from '../redux/reviewSlice';
-import wishlistReducer from '../redux/wishlistSlice';
-import paymentReducer from '../redux/paymentSlice';
-import adminReducer from '../redux/adminSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import authReducer from "../redux/authSlice";
+import productReducer from "../redux/productSlice";
+import cartReducer from "../redux/cartSlice";
+import orderReducer from "../redux/orderSlice";
+import adminReducer from "../redux/adminSlice";
+import paymentReducer from "../redux/paymentSlice";
+import wishlistReducer from "../redux/wishlistSlice";
+import notificationReducer from "../redux/notificationSlice";
+import sellerReducer from "../redux/sellerSlice";
+import reviewReducer from "../redux/reviewSlice";
+import chatReducer from "../redux/chatSlice";
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
     auth: authReducer,
-    products: productReducer,
+    product: productReducer,
     cart: cartReducer,
-    orders: orderReducer,
-    reviews: reviewReducer,
-    wishlist: wishlistReducer,
-    payment: paymentReducer,
+    order: orderReducer,
     admin: adminReducer,
+    payment: paymentReducer,
+    wishlist: wishlistReducer,
+    notification: notificationReducer,
+    seller: sellerReducer,
+    reviews: reviewReducer,
+    chat: chatReducer,
   },
 });
+
+export default store;

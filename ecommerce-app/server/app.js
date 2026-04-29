@@ -1,36 +1,63 @@
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import authRoutes from './routes/authRoutes.js';
-import productRoutes from './routes/productRoutes.js';
-import cartRoutes from './routes/cartRoutes.js';
-import orderRoutes from './routes/orderRoutes.js';
-import paymentRoutes from './routes/paymentRoutes.js';
-import reviewRoutes from './routes/reviewRoutes.js';
-import wishlistRoutes from './routes/wishlistRoutes.js';
-import sellerRoutes from './routes/sellerRoutes.js';
-import adminRoutes from './routes/adminRoutes.js';
-import { errorMiddleware } from './middleware/errorMiddleware.js';
+const express = require("express");
+const cors = require("cors");
 
-dotenv.config();
+const authRoutes = require("./routes/authRoutes");
+const productRoutes = require("./routes/productRoutes");
+const orderRoutes = require("./routes/orderRoutes");
+const paymentRoutes = require("./routes/paymentRoutes");
+
+const cartRoutes =
+  require("./routes/cartRoutes");
+const wishlistRoutes =
+  require("./routes/wishlistRoutes");
+const reviewRoutes =
+  require("./routes/reviewRoutes");
+const sellerRoutes =
+  require("./routes/sellerRoutes");
+
+const adminRoutes =
+  require("./routes/adminRoutes");
+const helmet =
+  require("helmet");
+const compression =
+  require("compression");
+const morgan =
+  require("morgan");
+const rateLimit =
+  require(
+    "express-rate-limit"
+  );
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use('/api/auth', authRoutes);
-app.use('/api/products', productRoutes);
-app.use('/api/cart', cartRoutes);
-app.use('/api/orders', orderRoutes);
-app.use('/api/payments', paymentRoutes);
-app.use('/api/reviews', reviewRoutes);
-app.use('/api/wishlist', wishlistRoutes);
-app.use('/api/seller', sellerRoutes);
-app.use('/api/admin', adminRoutes);
-app.use(errorMiddleware);
 
-app.get('/', (req, res) => {
-  res.send({ status: 'ok', message: 'Ecommerce API is running' });
-});
+app.use("/api/auth", authRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api/payments", paymentRoutes);
 
-export default app;
+app.use("/api/cart", cartRoutes);
+app.use(
+  "/api/wishlist",
+  wishlistRoutes
+);
+app.use("/api/reviews", reviewRoutes);
+app.use("/api/seller", sellerRoutes);
+
+
+app.use("/api/admin", adminRoutes);
+app.use(helmet());
+app.use(compression());
+app.use(morgan("dev"));
+
+app.use(
+  rateLimit({
+    windowMs:
+      15 * 60 * 1000,
+    max: 200
+  })
+);
+
+module.exports = app;

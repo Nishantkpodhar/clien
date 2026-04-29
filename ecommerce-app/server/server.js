@@ -1,18 +1,59 @@
-import app from './app.js';
-import connectDB from './config/db.js';
+require("dotenv").config();
 
-const PORT = process.env.PORT || 5000;
+const http =
+  require("http");
 
-const startServer = async () => {
-  try {
-    await connectDB();
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
-    });
-  } catch (error) {
-    console.error(error);
-    process.exit(1);
+const { Server } =
+  require("socket.io");
+
+const app =
+  require("./app");
+const connectDB =
+  require("./config/db");
+
+connectDB();
+
+const server =
+  http.createServer(app);
+
+const io = new Server(server, {
+  cors: {
+    origin: "*"
   }
-};
+});
 
-startServer();
+io.on(
+  "connection",
+  (socket) => {
+    console.log(
+      "Client connected"
+    );
+
+    socket.on(
+      "chat-message",
+      (data) => {
+        io.emit(
+          "chat-message",
+          data
+        );
+      }
+    );
+
+    socket.on(
+      "disconnect",
+      () => {
+        console.log(
+          "Disconnected"
+        );
+      }
+    );
+  }
+);
+
+server.listen(
+  process.env.PORT,
+  () =>
+    console.log(
+      "Server running"
+    )
+);
